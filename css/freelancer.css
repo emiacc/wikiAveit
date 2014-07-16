@@ -465,3 +465,12 @@ border-color: #FFF;
 color: #FFF;
 background-color: #2c3e50;
 }
+.tamano{
+    font-size: 17px;
+}
+.modal-content > div > div > div > div > p{
+    font-size: 18px;
+}
+.listas{
+    font-size: 18px;    
+}
