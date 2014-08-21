@@ -109,15 +109,14 @@
                     </a>
                 </div>
                 <div class="col-sm-4 portfolio-item">
-                    <!--<a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">-->
-                        <!--<div class="caption">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-play fa-3x"></i>
                             </div>
-                        </div>-->
-                    <a class="portfolio-link">
+                        </div>
                         <img src="img/portfolio/tribunal.jpg" class="img-responsive" alt="" />
-                    </a>
+                    </a>                    
                 </div>
                 <div class="col-sm-4 portfolio-item">
                     <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
@@ -242,31 +241,32 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-8 col-lg-offset-2">
-                                <form role="form">
+                                <form role="form" action="" method="post" id="mycontactform">
                                     <div class="row">
                                         <div class="form-group col-xs-12 floating-label-form-group">
                                             <label for="name">Nombre</label>
-                                            <input class="form-control" type="text" name="name" placeholder="Name">
+                                            <input class="form-control" type="text" name="name" id="name" placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-xs-12 floating-label-form-group">
                                             <label for="email">Email</label>
-                                            <input class="form-control" type="email" name="email" placeholder="Email Address">
+                                            <input class="form-control" type="email" name="email" id="email" placeholder="Email Address">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-xs-12 floating-label-form-group">
                                             <label for="message">Mensaje</label>
-                                            <textarea placeholder="Message" class="form-control" rows="5"></textarea>
+                                            <textarea placeholder="Message" class="form-control" name="message" id="message" rows="5"></textarea>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="form-group col-xs-12">
-                                            <button type="submit" class="btn btn-lg btn-success azul">Enviar</button>
+                                            <button type="submit" id="submit" class="btn btn-lg btn-success azul">Enviar</button>
                                         </div>
                                     </div>
+                                    <div id="success" style="color:red;"></div>
                                 </form>
                             </div>
                         </div>
@@ -416,19 +416,47 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-10 col-lg-offset-1">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>Tribunal de disciplina</h2>
                             <hr class="star-primary">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client: <strong><a href="http://startbootstrap.com">Start Bootstrap</a></strong>
-                                </li>
-                                <li>Date: <strong><a href="http://startbootstrap.com">April 2014</a></strong>
-                                </li>
-                                <li>Service: <strong><a href="http://startbootstrap.com">Web Development</a></strong>
-                                </li>
-                            </ul>
+                            <br><h3>Estado de Casos</h3>
+                            <br><h4>En Comisión Directiva</h4>
+                                <p><strong>Notificado:</strong> Es el primer estado que se asigna a un caso, al momento de notificar al socio de la reunión, evento, actividad o tarea, según el procedimiento que establece el Reglamento Interno de Disciplina. Al momento asentar el caso en el sistema queda asignado el Número de Expediente.</p>
+                                <p><strong>Asistencia Verificada:</strong> Es el proceso en el cual se revisa las firmas del libro de asistencia, o planilla destinada a tal fin, y conformar la lista que personas ausentes a la reunión, evento, actividad o registro de tareas. En caso de tareas de designadas con fecha límite de realización, sin necesidad de cumplir con horario específico no requerirá de verificación de asistencia, directamente se verificará la finalización del trabajo asignado.</p>
+                                <p><strong>Entrega Virtual:</strong> Es la primer entrega del pedido de Sanción o Premio, la misma se realiza de forma virtual, vía e-mail. El Tribunal de Disciplina tiene oportunidad de verificar la confección del mismo antes de que sea impreso, firmado y enviado definitivamente. Esta verificación tiene en cuenta los aspectos de formato, redacción y coherencia, dejando de lado los motivos del pedido y los socios involucrados los cuales se analizarán una vez que el Tribunal de Disciplina haya recibido el pedido definitivo, firmado y sellado por parte de la Comisión Directiva.</p>
+                                <p><strong>Entrega Definitiva:</strong> En este último estado la Comisión Directiva finaliza sus tareas entorno al caso y pasa definitivamente el Tribunal de Disciplina.</p>
+                                <br><h4>En Tribunal de Disciplina</h4>
+                                <p><strong>Registrado:</strong> Es el estado que se asigna cuando se recibe el caso y se registra los socios afectados en el sistema.</p>
+                                <p><strong>Abierto:</strong> Tomando el listado de socios registrado se procede a enviar los AVISOS DE SANCIÓN vía e-mail, quedando abierto y comenzando a regir el plazo de 3 (tres) días hábiles para realizar la justificación o descargo, según lo establece el Inc. ## Art. ## Título ## del Estatuto AVEIT.</p>
+                                <p><strong>En Proceso:</strong> Finalizado el plazo de 3 (tres) días mencionado anteriormente, se procede al análisis del caso, las justificaciones, descargos, y demás documentación que se haya presentado en tiempo y forma ante el Tribunal de Disciplina. Como parte de esa evaluación los justificativos y descargos son calificados con APROBADO o DENEGADO según corresponda, acorde los motivos de justificación contemplados por el Reglamento Interno de Disciplina y al criterio del Tribunal de Disciplina. También será motivo de estudio, la estimación de puntos realizada por la Comisión Directiva, teniendo en cuenta las graduaciones de premios y sanciones que figuren en la reglamentación (Reglamentos Interno de Sub-Comisión, Reglamento Interno de Disciplina y Estatuto AVEIT).</p>
+                                <p><strong>Cerrado:</strong> Finalizado el proceso de evaluación se procede a cerrar el caso mediante la emisión de una RESOLUCIÓN, cuyo número será igual al expediente que resuelve, el cual resumirá los socios afectado a la medida y los absueltos, la cantidad de puntos asignados y la reglamentación respaldante. La misma es enviada vía e-mail a los socios afectados y a la Comisión Directa, y expuesta en la esterilla del hall de entrada de la sede social. El caso permanecerá con este estado durante los siguiente 7 (siete) días, durante los cuales se podrá apelar la decisión del Tribunal de Disciplina. En caso de tener que hacer modificaciones de un premio o sanción se realizará mediante la DISPOSICIÓN, y la resolución no será alterada.</p>
+                                <p><strong>Archivado:</strong> Una vez alcanzado este estado, el caso se archiva definitivamente, SIN posibilidad de realizar modificaciones y/o reclamos.</p>
+                           
+                            <br><h3>Documentación emitida</h3>
+                            <p>Durante el desarrollo de las tareas relacionadas a los premios y sanciones el Tribunal de Disciplina emite y recibe distintos documentos, que respaldan y dejan asentado de forma escrita los procedimientos y decisiones tomadas.</p>
+
+                            <br><h4>Documentos recibidos por el Tribunal de Disciplina</h4>
+                            <h5>T-01 (FORMULARIO DE SOLICITUD DE PREMIO O SANCIÓN)</h5>
+                            <p>Según establece el procedimiento en el Art. ## Título ## del Estatuto AVEIT, las solicitudes de premios y sanciones debe realizarlas la Comisión Directiva ante el Tribunal de Disciplina, por lo cual son lo único hacen uso de estos formularios.
+                            El T-01 tiene dos variantes la “I” y “C”, para solicitudes Individuales o Colectivas, respectivamente.</p>
+                            <br><h5><a href="https://www.facebook.com/download/1478231159076601/T-02_new.pdf">T-02 (FORMULARIO DE JUSTIFICACIÓN)</a></h5>
+                            <p>En el primer bloque, DATOS PERSONALES, el socio debe identificarse mediante APELLIDO, Nombre y Número de Socio. En el segundo bloque, DESCRIPCIÓN DE SANCIÓN, tiene como objetivo lograr que el socio tenga noción de qué se lo acusa, por eso se toma como referencia una descripción general de la sanción y el número de expediente para que no sea confundida con otros casos. El tercer bloque, JUSTIFICACIÓN, agrupa los causales de justificación que reconoce el Reglamento Interno de Disciplina, y aclara la documentación que se debe adjuntar para respaldar al mismo. El cuarto bloque, OBSERVACIONES, que a disposición del socio para que agregue cualquier información que crea pertinente, relacionada a la evaluación del presente justificativo. Por último, se debe firmar, aclarar y colocar el número de socio.
+                            Para los casos de justificación por actividad académica o actividad laboral (donde el empleador no entregue certificado de trabajo) se hará uso del APARTADO DE CERTIFICACIÓN, el cual tiene como objetivo legitimar la realización de dichas actividades. El mismo deberá estar firmado y aclarado por el profesor de la cátedra o el empleador, según corresponda.
+                            En caso de actividad laboral, la misma deberá ser declarada con anticipación mediante declaración jurada, según reglamenta el Art. ## y al momento de utilizar el APARTADO DE CERTIFICACIÓN, el empleador deberá indicar su cargo y CUIT, personal o de la empresa.
+                            Finalmente, el T-02 deberá ser entregado en la secretaría de AVEIT, en la sede social, en horario de secretarias (09:00hs a 14:00hs y 16:00hs a 21:00hs), donde será controlado el correcto llenado de los diferentes bloques y se verificará la numeración de hojas. Si esto es correcto se procederá a sellarlo, firmarlo, registrarlo en el sistema y archivarlo para ser evaluado por el Tribunal de Disciplina. Su numeración surge del sistema de registro del Tribunal de Disciplina.</p>
+                            <br><h5><a href="https://www.facebook.com/download/1432110897039724/T-03_new.pdf">T-03 (FORMULARIO DE DESCARGO)</a></h5>
+                            <p>El uso de este formulario se reduce a los casos especiales donde la causa de justificación no está contemplada dentro del Reglamento Interno de Disciplina, por lo cual no figura dentro del T-02. La evaluación de estos formularios solo se basa en el criterio del Tribunal de Disciplina y/o en casos anteriores de similares características.
+                            El T-03 se dispone en formato de carta formal, lo cual deberá ser respetado en su estructura y redacción.
+                            Si el cuerpo de texto a escribir es demasiado extenso, se podrá utilizar otro T-03 para continuar escribiendo. Los formularios agregado no requieren tener los encabezados completos (dejar en blanco), solo de deben numerar correctamente las hojas.
+                            Al igual que el T-02, el T-03 deberá ser entregado en la secretaría de AVEIT, en la sede social, en horario de secretarias (09:00hs a 14:00hs y 16:00hs a 21:00hs), donde será controlado el correcto llenado y se verificará la numeración de hojas. Si esto es correcto se procederá a sellarlo, firmarlo, registrarlo en el sistema y archivarlo para ser evaluado por el Tribunal de Disciplina. Su numeración surge del sistema de registro del Tribunal de Disciplina.</p>
+                            
+                            <br><h4>Documentos Emitidos por el Tribunal de Disciplina</h4> 
+                            <p><strong>AVISO DE SANCIÓN:</strong> Es la comunicación, por parte de Tribunal de Disciplina, al socio de que existe un pedido de sanción en su contra. El mismo detalla la descripción de sanción, la magnitud de la sanción, el número de expediente asignado al caso y, al momento de ser recibido, determina el inicio del plazo de 3 (tres) días hábiles para presentar la justificación. Este es enviado vía e-mail desde las cuentas del Tribunal de Disciplina (tribunaldedisciplina.aveit@gmail.com o tribunal@aveit.org.ar) a las direcciones que fueron declaradas mediante declaración jurada por el socio, la cual deberá tener dominio Gmail. Su numeración surge del sistema de registro del Tribunal de Disciplina.</p>
+                            <p><strong>RESOLUCIÓN:</strong> Es documento que da cierre a un caso, estableciendo las personas premiadas, sancionadas, absueltas, la cantidad de puntos asignados, los motivos y la reglamentación en la cual se basa dicho juicio. Su estructura se caracteriza por los VISTOS, CONSIDERANDOS y artículos de RESOLUCIÓN. Su numeración coincide con el expediente del caso que resuelve.</p>
+                            <p><strong>DISPOSICIÓN:</strong> De estructura similar a la RESOLUCIÓN, se utilizar en los casos especiales de justificación, donde el Tribunal de Disciplina y la Comisión Directiva deciden contemplar algún caso especial de justificación, no incluida en el Reglamento Interno de Disciplina. También, se utiliza en los casos apelados donde se debe ratificar un veredicto adoptado en alguna RESOLUCIÓN. Su numeración surge del sistema de registro del Tribunal de Disciplina.</p>
+                            <p><strong>CIRCULAR:</strong> Es un documento de carácter informativo, sin embargo, su contenido podrá ser tomado como reglamentario. Su numeración surge del sistema de registro del Tribunal de Disciplina.</p>
+
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>

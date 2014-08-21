@@ -7,6 +7,22 @@ $(function() {
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
+
+    //contar visitas
+    var x=$(this);
+    x.load("contador.php"); 
+    //enviar email
+    $('#submit').click(function(){
+        $.post("send.php", $("#mycontactform").serialize(),  function(response) {
+            $('#success').html(response);
+            $('#name').val('');
+            $('#email').val('');
+            $('#message').val('');
+            $('#success').hide('slow');
+        });
+        return false;
+     });
+        
 });
 
 // Floating label headings for the contact form
