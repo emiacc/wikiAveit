@@ -15,10 +15,13 @@ $json = '[';
 $conexion=mysql_connect("localhost","root","");
 mysql_query("SET NAMES 'utf8'");
 mysql_select_db("calendario",$conexion);
+//$conexion=mysql_connect("mysql.tuars.com","u601393476_calen","35578261emi");
+//mysql_query("SET NAMES 'utf8'");
+//mysql_select_db("u601393476_calen",$conexion);
 //$registros=mysql_query("SELECT e.id,e.titulo,e.fecha_inicio,e.hora_inicio,e.fecha_fin,e.hora_fin,e.descripcion,c.hexa FROM Eventos e LEFT JOIN Colores c ON e.color = c.id",$conexion);
 $registros=mysql_query("SELECT e.id, e.titulo, e.fecha_inicio, e.hora_inicio, e.fecha_fin, e.hora_fin, e.descripcion, c.hexa
-FROM Eventos e
-LEFT JOIN Colores c ON e.color = c.id
+FROM eventos e
+LEFT JOIN colores c ON e.color = c.id
 LEFT JOIN destinatariosxevento d ON d.idEvento = e.id
 WHERE idDestino =1 
 OR ( idDestino =2 AND idSubGrupo = $grupo )
