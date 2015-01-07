@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href='cupertino/jquery-ui.min.css' />
+<link rel='stylesheet' href='loader.css' />
+<link rel='stylesheet' href='../css/bootstrap.min.css' />
+<link href='fullcalendar.css' rel='stylesheet' />
+<script src='moment.min.js'></script>
+<script src='../js/jquery-1.10.2.js'></script>
+<script src='../js/bootstrap.min.js'></script>
+<script src='fullcalendar.min.js'></script>
+<script src='es.js'></script>
+<script>
+
+	var date = new Date();
+	var dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+    var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+	$(document).ready(function() {
+		$('#grupos > div > input').click(function(){
+			$('#grupos > div').toggle();
+			$(this).parent().toggle();
+			validar();
+		});
+		$('#subcomisiones > div > input').click(function(){
+			$('#subcomisiones > div').toggle();
+			$(this).parent().toggle();
+			validar();
+		});
+	});
+
+	function validar(){
+		var arr = new Array();
+		$('form > div > input').each(function(){
+			if($(this).prop('checked'))
+				arr.push($(this).val()); 
+		});
+
+		if(arr.length == 2){
+			$('#contenedorCalendario').html("<div id='calendar'></div>"); 
+			getEventos(arr[0],arr[1]); 
+		}	
+	}
+
+	function getEventos(grupo, subcomision){
+		$('#calendar').fullCalendar({
+			theme: true,
+			header: {
+				left: 'prev,next',
+				center: 'title',
+				right: null
+			},
+			defaultDate: date,
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			events: {
+				url: 'get-events.php?grupo='+grupo+'&sub='+subcomision,
+				error: function() {
+					$('#script-warning').show();
+				}
+			},
+			loading: function(bool) {
+				$('#floatingCirclesG').toggle(bool);
+				$('#pantalla').toggle(bool);
+			},
+			 eventClick: function(calEvent, jsEvent, view) {
+			 	var inicio;
+			 	var fin = "";
+			 	inicio = new Date(calEvent.start);
+			 	if(calEvent.end!=null)
+                	var fin = new Date(calEvent.end); 
+			 	$("#tituloModal").html(calEvent.title);
+			 	var minutos;
+			 	if(inicio.getMinutes()<10) minutos = "0"+inicio.getMinutes();
+			 	else minutos = inicio.getMinutes()+"";
+			 	$("#bodyModal").html("<p>"+dias[inicio.getDay()]+" "+inicio.getDate()+" de "+meses[inicio.getMonth()]+"</p>"+(inicio.getHours()+3)+":"+minutos+"hs");
+			 	if(fin!=""){
+			 		if(fin.getMinutes()<10) minutos = "0"+fin.getMinutes();
+			 		else minutos = fin.getMinutes()+"";
+			 		$("#bodyModal").append(" - "+(fin.getHours()+3)+":"+minutos+"hs");
+			 	}
+			 		$("#bodyModal").append("<p>"+calEvent.desc+"</p>");
+				$('#myModal').modal('show');
+			 }
+		});
+	}
+
+</script>
+<style>
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;		
+    	background-color: #2c3e50;
+    	color: white;
+	}
+	
+	#script-warning {
+		display: none;
+		background: #eee;
+		position: absolute;
+		border-bottom: 1px solid #ddd;
+		padding: 0 10px;
+		line-height: 40px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 12px;
+		color: red;
+	}
+	.container-fluid{
+		margin-top: 30px;
+		margin-bottom: 5px; 
+	}
+
+	#floatingCirclesG {
+		display: none;
+		position: absolute;
+		top: 40%;
+		left: 44%;
+		z-index: 10;
+	}
+	#calendar {		
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+	.fc-day-grid-event > .fc-content{
+		max-height: 30px;
+		white-space: normal;		
+	}
+	#pantalla{
+		display: none;
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 9;
+		background-color: rgba(0,0,0,0.8);		
+	}
+	#formularios{
+		margin-bottom: 30px;
+	}
+	#formularios > .row{
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+	#referencia > .row > div{
+		margin-bottom: 2px;		
+		padding: 0 2px;
+		text-align: center;
+	}
+	.ui-state-active{
+		font-weight: normal;
+	}
+	.modal-content{
+		color: black;
+	}
+</style>
+
+</head>
+<body>
+	<div id="pantalla"></div>
+	<div id="floatingCirclesG">
+		<div id="frotateG_01" class="f_circleG"></div>
+		<div id="frotateG_02" class="f_circleG"></div>
+		<div id="frotateG_03" class="f_circleG"></div>
+		<div id="frotateG_04" class="f_circleG"></div>
+		<div id="frotateG_05" class="f_circleG"></div>
+		<div id="frotateG_06" class="f_circleG"></div>
+		<div id="frotateG_07" class="f_circleG"></div>
+		<div id="frotateG_08" class="f_circleG"></div>
+	</div>
+	<div id='script-warning'><code>php/get-events.php</code> must be running.</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12" id="formularios">
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="row">
+							<div class="col-xs-5">
+								<form id="grupos">
+									<div><input value="48" type="checkbox">G48</div>
+									<div><input value="49" type="checkbox">G49</div>
+									<div><input value="50" type="checkbox">G50</div>
+									<div><input value="51" type="checkbox">G51</div>
+									<div><input value="52" type="checkbox">G52</div>
+									<div><input value="53" type="checkbox">G53</div>
+								</form>
+							</div>
+							<div class="col-xs-7">
+								<form id="subcomisiones">
+									<div><input value="0" type="checkbox">N/A</div>
+									<div><input value="6" type="checkbox">RRHH</div>
+									<div><input value="2" type="checkbox">Computos</div>
+									<div><input value="4" type="checkbox">Manten.</div>
+									<div><input value="9" type="checkbox">OyE</div>
+									<div><input value="8" type="checkbox">Rifas</div>
+									<div><input value="7" type="checkbox">RRII</div>
+									<div><input value="1" type="checkbox">CD</div>
+									<div><input value="3" type="checkbox">GSA</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-4" id="referencia">
+						<div class="row">
+							<div class="col-sm-3 col-xs-6"><div class="fc-event">AVEIT</div></div>
+							<div class="col-sm-3 col-xs-6"><div class="fc-event" style="background-color:#95D641;border-color:#95D641">Activos</div></div>
+							<div class="col-sm-3 col-xs-6"><div class="fc-event" style="background-color:#FF9B00;border-color:#FF9B00">Grupo</div></div>
+							<div class="col-sm-3 col-xs-6"><div class="fc-event" style="background-color:#FF6D3F;border-color:#FF6D3F">Subcom</div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="contenedorCalendario" class="col-xs-12">
+				<div id='calendar'></div>
+			</div>
+		</div>
+	</div>
+	<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+		    <div class="modal-header">
+	        	<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        	<h4 id="tituloModal" class="modal-title"></h4>
+	      	</div>
+	      	<div id="bodyModal" class="modal-body">
+	        	<p></p>
+	      	</div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
