@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>Nuevo Evento</title>
+	<meta charset='utf-8' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' href='../css/bootstrap.min.css' />
+</head>
+<body>
+	<div class="container">
+		<br><br>
+		<form method="POST" action="guardarEvento.php" class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
+		  	<div class="form-group">
+			    <label for="titulo">Título</label>
+			    <input type="text" class="form-control" id="titulo" name="titulo" required>
+		  	</div>
+			<div class="form-group">
+		    	<label for="fecha_inicio">Fecha Inicio</label>
+		    	<input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
+		  	</div>
+			<div class="row">
+				<div class="form-group col-xs-6">
+				    <label for="fecha_inicio">Hora Inicio</label>
+				    <input type="time" class="form-control" id="hora_inicio" name="hora_inicio">
+				</div>		  
+				<div class="form-group col-xs-6">
+				    <input type="checkbox" id="ch" onclick="change();">
+				    <label for="fecha_inicio">Hora Fin</label>
+					<input type="time" class="form-control" id="hora_fin" name="hora_fin" disabled>
+				</div>
+			</div>
+			<div class="form-group">
+			    <label for="descripcion">Descripción</label>
+			 	<textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+			</div>
+			<div class="row">
+			  	<div class="form-group col-xs-6" onclick="change2();">
+			    	<label for="destinatario">Destinatarios</label>
+			    	<div class="radio">
+					  <label>
+					    <input type="radio" name="destinatario" id="aveit" value="1">
+					    AVEIT
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="destinatario" id="sub" value="3">
+					    Subcomisión
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="destinatario" id="grupo" value="2">
+					    Grupo
+					  </label>
+					</div>
+			  	</div>
+			  	<div class="form-group group col-xs-6" id="subcomisiones" style="display:none;">				
+			  		<br>
+			  		<div><input name="6" type="checkbox"> RRHH</div>
+			  		<div><input name="2" type="checkbox"> Computos</div>
+			  		<div><input name="4" type="checkbox"> Manten.</div>
+			  		<div><input name="9" type="checkbox"> OyE</div>
+			  		<div><input name="8" type="checkbox"> Rifas</div>
+			  		<div><input name="7" type="checkbox"> RRII</div>
+			  		<div><input name="1" type="checkbox"> CD</div>
+			  		<div><input name="3" type="checkbox"> GSA</div>
+			  		<div><input name="10" type="checkbox"> Tribunal</div>
+			  	</div>
+			  	<div class="form-group group col-xs-6" id="grupos" style="display:none;">				
+			  		<br>
+			  		<div><input name="48" type="checkbox"> 48</div>
+			  		<div><input name="49" type="checkbox"> 49</div>
+			  		<div><input name="50" type="checkbox"> 50</div>
+			  		<div><input name="51" type="checkbox"> 51</div>
+			  		<div><input name="52" type="checkbox"> 52</div>
+			  		<div><input name="53" type="checkbox"> 53</div>
+			  	</div>
+		   </div>
+		  	<button type="submit" class="btn btn-default">Guardar</button>
+		</form>
+	</div>
+	<script type="text/javascript">
+		function change(){
+			if(document.getElementById("ch").checked == true)
+				document.getElementById("hora_fin").disabled = false;				
+			else
+				document.getElementById("hora_fin").disabled = true;	
+		}
+		function change2(){
+			if(document.getElementById("aveit").checked == true){
+				document.getElementById("subcomisiones").style.display = "none";	
+				document.getElementById("grupos").style.display = "none";	
+			}			
+			else if(document.getElementById("sub").checked == true){
+				document.getElementById("subcomisiones").style.display = "block";	
+				document.getElementById("grupos").style.display = "none";
+			}
+			else if(document.getElementById("grupo").checked == true){
+				document.getElementById("subcomisiones").style.display = "none";	
+				document.getElementById("grupos").style.display = "block";
+			}
+		}
+		
+		var loc = document.location.href;
+	    if(loc.indexOf('?')>0){
+	        var status = loc.substr(-1);
+			switch(status){
+	            case "1": alert("Debe indicar un Destinatario"); break;
+	            case "2": alert("Debe indicar al menos un Grupo"); break;
+	            case "3": alert("Debe indicar al menos una Subcomision"); break;
+	            case "4": alert("Registrado con exito!"); break;
+	        }
+	    }	   
+	</script>
+</body>
+</html>

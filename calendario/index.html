@@ -1,165 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8' />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' href='cupertino/jquery-ui.min.css' />
-<link rel='stylesheet' href='loader.css' />
-<link rel='stylesheet' href='../css/bootstrap.min.css' />
-<link href='fullcalendar.css' rel='stylesheet' />
-<script src='moment.min.js'></script>
-<script src='../js/jquery-1.10.2.js'></script>
-<script src='../js/bootstrap.min.js'></script>
-<script src='fullcalendar.min.js'></script>
-<script src='es.js'></script>
-<script>
+	<title>Calendario</title>
+	<meta charset='utf-8' />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' href='cupertino/jquery-ui.min.css' />
+	<link rel='stylesheet' href='loader.css' />
+	<link rel='stylesheet' href='../css/bootstrap.min.css' />
+	<link href='fullcalendar.css' rel='stylesheet' />
+	<script src='moment.min.js'></script>
+	<script src='../js/jquery-1.10.2.js'></script>
+	<script src='../js/bootstrap.min.js'></script>
+	<script src='fullcalendar.min.js'></script>
+	<script src='es.js'></script>
+	<script>
 
-	var date = new Date();
-	var dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-    var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-	$(document).ready(function() {
-		$('#grupos > div > input').click(function(){
-			$('#grupos > div').toggle();
-			$(this).parent().toggle();
-			validar();
-		});
-		$('#subcomisiones > div > input').click(function(){
-			$('#subcomisiones > div').toggle();
-			$(this).parent().toggle();
-			validar();
-		});
-	});
-
-	function validar(){
-		var arr = new Array();
-		$('form > div > input').each(function(){
-			if($(this).prop('checked'))
-				arr.push($(this).val()); 
+		var date = new Date();
+		var dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+	    var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+		$(document).ready(function() {
+			$('#grupos > div > input').click(function(){
+				$('#grupos > div').toggle();
+				$(this).parent().toggle();
+				validar();
+			});
+			$('#subcomisiones > div > input').click(function(){
+				$('#subcomisiones > div').toggle();
+				$(this).parent().toggle();
+				validar();
+			});
 		});
 
-		if(arr.length == 2){
-			$('#contenedorCalendario').html("<div id='calendar'></div>"); 
-			getEventos(arr[0],arr[1]); 
-		}	
-	}
+		function validar(){
+			var arr = new Array();
+			$('form > div > input').each(function(){
+				if($(this).prop('checked'))
+					arr.push($(this).val()); 
+			});
 
-	function getEventos(grupo, subcomision){
-		$('#calendar').fullCalendar({
-			theme: true,
-			header: {
-				left: 'prev,next',
-				center: 'title',
-				right: null
-			},
-			defaultDate: date,
-			editable: false,
-			eventLimit: true, // allow "more" link when too many events
-			events: {
-				url: 'get-events.php?grupo='+grupo+'&sub='+subcomision,
-				error: function() {
-					$('#script-warning').show();
-				}
-			},
-			loading: function(bool) {
-				$('#floatingCirclesG').toggle(bool);
-				$('#pantalla').toggle(bool);
-			},
-			 eventClick: function(calEvent, jsEvent, view) {
-			 	var inicio;
-			 	var fin = "";
-			 	inicio = new Date(calEvent.start);
-			 	if(calEvent.end!=null)
-                	var fin = new Date(calEvent.end); 
-			 	$("#tituloModal").html(calEvent.title);
-			 	var minutos;
-			 	if(inicio.getMinutes()<10) minutos = "0"+inicio.getMinutes();
-			 	else minutos = inicio.getMinutes()+"";
-			 	$("#bodyModal").html("<p>"+dias[inicio.getDay()]+" "+inicio.getDate()+" de "+meses[inicio.getMonth()]+"</p>"+(inicio.getHours()+3)+":"+minutos+"hs");
-			 	if(fin!=""){
-			 		if(fin.getMinutes()<10) minutos = "0"+fin.getMinutes();
-			 		else minutos = fin.getMinutes()+"";
-			 		$("#bodyModal").append(" - "+(fin.getHours()+3)+":"+minutos+"hs");
-			 	}
-			 		$("#bodyModal").append("<p>"+calEvent.desc+"</p>");
-				$('#myModal').modal('show');
-			 }
-		});
-	}
+			if(arr.length == 2){
+				$('#contenedorCalendario').html("<div id='calendar'></div>"); 
+				getEventos(arr[0],arr[1]); 
+			}	
+		}
 
-</script>
-<style>
+		function getEventos(grupo, subcomision){
+			$('#calendar').fullCalendar({
+				theme: true,
+				header: {
+					left: 'prev,next',
+					center: 'title',
+					right: null
+				},
+				defaultDate: date,
+				editable: false,
+				eventLimit: true, // allow "more" link when too many events
+				events: {
+					url: 'get-events.php?grupo='+grupo+'&sub='+subcomision,
+					error: function() {
+						$('#script-warning').show();
+					}
+				},
+				loading: function(bool) {
+					$('#floatingCirclesG').toggle(bool);
+					$('#pantalla').toggle(bool);
+				},
+				 eventClick: function(calEvent, jsEvent, view) {
+				 	var inicio;
+				 	var fin = "";
+				 	inicio = new Date(calEvent.start);
+				 	if(calEvent.end!=null)
+	                	var fin = new Date(calEvent.end); 
+				 	$("#tituloModal").html(calEvent.title);
+				 	var minutos;
+				 	if(inicio.getMinutes()<10) minutos = "0"+inicio.getMinutes();
+				 	else minutos = inicio.getMinutes()+"";
+				 	$("#bodyModal").html("<p>"+dias[inicio.getDay()]+" "+inicio.getDate()+" de "+meses[inicio.getMonth()]+"</p>"+(inicio.getHours()+3)+":"+minutos+"hs");
+				 	if(fin!=""){
+				 		if(fin.getMinutes()<10) minutos = "0"+fin.getMinutes();
+				 		else minutos = fin.getMinutes()+"";
+				 		$("#bodyModal").append(" - "+(fin.getHours()+3)+":"+minutos+"hs");
+				 	}
+				 		$("#bodyModal").append("<p>"+calEvent.desc+"</p>");
+					$('#myModal').modal('show');
+				 }
+			});
+		}
 
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;		
-    	background-color: #2c3e50;
-    	color: white;
-	}
-	
-	#script-warning {
-		display: none;
-		background: #eee;
-		position: absolute;
-		border-bottom: 1px solid #ddd;
-		padding: 0 10px;
-		line-height: 40px;
-		text-align: center;
-		font-weight: bold;
-		font-size: 12px;
-		color: red;
-	}
-	.container-fluid{
-		margin-top: 30px;
-		margin-bottom: 5px; 
-	}
+	</script>
+	<style>
 
-	#floatingCirclesG {
-		display: none;
-		position: absolute;
-		top: 40%;
-		left: 44%;
-		z-index: 10;
-	}
-	#calendar {		
-		max-width: 1000px;
-		margin: 0 auto;
-	}
-	.fc-day-grid-event > .fc-content{
-		max-height: 30px;
-		white-space: normal;		
-	}
-	#pantalla{
-		display: none;
-		position: absolute;
-		right: 0;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		z-index: 9;
-		background-color: rgba(0,0,0,0.8);		
-	}
-	#formularios{
-		margin-bottom: 30px;
-	}
-	#formularios > .row{
-		max-width: 1000px;
-		margin: 0 auto;
-	}
-	#referencia > .row > div{
-		margin-bottom: 2px;		
-		padding: 0 2px;
-		text-align: center;
-	}
-	.ui-state-active{
-		font-weight: normal;
-	}
-	.modal-content{
-		color: black;
-	}
-</style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+			font-size: 14px;		
+	    	background-color: #2c3e50;
+	    	color: white;
+		}
+		
+		#script-warning {
+			display: none;
+			background: #eee;
+			position: absolute;
+			border-bottom: 1px solid #ddd;
+			padding: 0 10px;
+			line-height: 40px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 12px;
+			color: red;
+		}
+		.container-fluid{
+			margin-top: 30px;
+			margin-bottom: 5px; 
+		}
+
+		#floatingCirclesG {
+			display: none;
+			position: absolute;
+			top: 40%;
+			left: 44%;
+			z-index: 10;
+		}
+		#calendar {		
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		.fc-day-grid-event > .fc-content{
+			max-height: 30px;
+			white-space: normal;		
+		}
+		#pantalla{
+			display: none;
+			position: absolute;
+			right: 0;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			z-index: 9;
+			background-color: rgba(0,0,0,0.8);		
+		}
+		#formularios{
+			margin-bottom: 30px;
+		}
+		#formularios > .row{
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		#referencia > .row > div{
+			margin-bottom: 2px;		
+			padding: 0 2px;
+			text-align: center;
+		}
+		.ui-state-active{
+			font-weight: normal;
+		}
+		.modal-content{
+			color: black;
+		}
+	</style>
 
 </head>
 <body>
@@ -202,6 +203,7 @@
 									<div><input value="7" type="checkbox">RRII</div>
 									<div><input value="1" type="checkbox">CD</div>
 									<div><input value="3" type="checkbox">GSA</div>
+									<div><input value="10" type="checkbox">Tribunal</div>
 								</form>
 							</div>
 						</div>
