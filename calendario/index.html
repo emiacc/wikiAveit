@@ -59,7 +59,7 @@
 				events: {
 					url: 'get-events.php?grupo='+grupo+'&sub='+subcomision,
 					error: function() {
-						$('#script-warning').show();
+						//$('#script-warning').show();
 					}
 				},
 				loading: function(bool) {
@@ -111,6 +111,9 @@
 			font-weight: bold;
 			font-size: 12px;
 			color: red;
+		}
+		.fc-event-container{
+			cursor: pointer;
 		}
 		.container-fluid{
 			margin-top: 30px;
@@ -203,6 +206,7 @@
 									<div><input value="7" type="checkbox">RRII</div>
 									<div><input value="1" type="checkbox">CD</div>
 									<div><input value="3" type="checkbox">GSA</div>
+									<div><input value="11" type="checkbox">Prensa</div>
 									<div><input value="10" type="checkbox">Tribunal</div>
 								</form>
 							</div>

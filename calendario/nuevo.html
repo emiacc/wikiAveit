@@ -65,6 +65,7 @@
 			  		<div><input name="7" type="checkbox"> RRII</div>
 			  		<div><input name="1" type="checkbox"> CD</div>
 			  		<div><input name="3" type="checkbox"> GSA</div>
+			  		<div><input name="11" type="checkbox"> Prensa</div>
 			  		<div><input name="10" type="checkbox"> Tribunal</div>
 			  	</div>
 			  	<div class="form-group group col-xs-6" id="grupos" style="display:none;">				
@@ -76,7 +77,11 @@
 			  		<div><input name="52" type="checkbox"> 52</div>
 			  		<div><input name="53" type="checkbox"> 53</div>
 			  	</div>
-		   </div>
+		    </div>
+		    <div class="form-group">
+			    <label for="pass">Contraseña</label>
+			    <input type="password" class="form-control" id="pass" name="pass" required>
+		  	</div>
 		  	<button type="submit" class="btn btn-default">Guardar</button>
 		</form>
 	</div>
@@ -106,6 +111,7 @@
 	    if(loc.indexOf('?')>0){
 	        var status = loc.substr(-1);
 			switch(status){
+	            case "0": alert("Contraseña incorrecta"); break;
 	            case "1": alert("Debe indicar un Destinatario"); break;
 	            case "2": alert("Debe indicar al menos un Grupo"); break;
 	            case "3": alert("Debe indicar al menos una Subcomision"); break;

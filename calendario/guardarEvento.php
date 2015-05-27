@@ -1,5 +1,7 @@
 <?php
-
+if($_POST['pass'] != 'calendarioaveit2015'){
+	header('Location: nuevo.html?status=0');
+}else{
 $titulo = $_POST['titulo'];
 $fecha = $_POST['fecha_inicio'];
 $descripcion = $_POST['descripcion'];
@@ -120,6 +122,10 @@ if(isset($_POST['destinatario'])){
 			mysql_query("INSERT INTO destinatariosxevento VALUES ($id_evento,3,10)", $conexion) or die("Problemas en el insert ".mysql_error());
 			$subcom = TRUE;
 		}
+		if(isset($_POST['11'])){
+			mysql_query("INSERT INTO destinatariosxevento VALUES ($id_evento,3,11)", $conexion) or die("Problemas en el insert ".mysql_error());
+			$subcom = TRUE;
+		}
 		if($subcom == FALSE){
 			mysql_query("DELETE FROM eventos WHERE id=$id_evento", $conexion) or die("Problemas en el insert ".mysql_error());
 			mysql_close($conexion);
@@ -134,6 +140,6 @@ if(isset($_POST['destinatario'])){
 else{
 	header('Location: nuevo.html?status=1');	
 }
-
+}
 
 ?>
